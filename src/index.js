@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -21,9 +21,11 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <Route path="/api/posts/new" component={PostsNew} />
-        <Route path="/" component={PostsIndex} />
-        <Route path="/api/posts" component={PostsIndex} />
+        <Switch>
+          <Route path="/api/posts/new" component={PostsNew} />
+          <Route exact path="/" component={PostsIndex} />
+          <Route path="/api/posts" component={PostsIndex} />
+        </Switch>
       </div>
     </BrowserRouter>
   </Provider>,
