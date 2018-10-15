@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { createPost } from "../actions";
+
 class PostsNew extends Component {
   renderTitleField(field) {
     const className = `form-control ${
@@ -67,7 +69,9 @@ class PostsNew extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    this.props.createPost(values, () => {
+      this.props.history.push("/");
+    });
   }
 
   render() {
@@ -125,20 +129,23 @@ PostsNew = reduxForm({
 })(PostsNew);
 
 const selector = formValueSelector("PostsNewForm");
-PostsNew = connect(state => {
-  const title = selector(state, "title");
-  const category = selector(state, "category");
-  const content = selector(state, "content");
-  const hasRefsValue = selector(state, "hasReferences");
-  const refsValue = selector(state, "references");
+PostsNew = connect(
+  state => {
+    const title = selector(state, "title");
+    const category = selector(state, "category");
+    const content = selector(state, "content");
+    const hasRefsValue = selector(state, "hasReferences");
+    const refsValue = selector(state, "references");
 
-  return {
-    title,
-    category,
-    content,
-    hasRefsValue,
-    refsValue
-  };
-})(PostsNew);
+    return {
+      title,
+      category,
+      content,
+      hasRefsValue,
+      refsValue
+    };
+  },
+  { createPost }
+)(PostsNew);
 
 export default PostsNew;
