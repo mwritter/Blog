@@ -6,14 +6,14 @@ import "./index.css";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import PostsIndex from "./containers/posts_index";
-
+import ReduxPromise from "redux-promise";
 import rootReducer from "./reducers";
 import { createStore, applyMiddleware } from "redux";
 
 const store = createStore(
   rootReducer,
   {},
-  composeWithDevTools(applyMiddleware())
+  composeWithDevTools(applyMiddleware(ReduxPromise))
 );
 
 ReactDOM.render(
