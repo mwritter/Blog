@@ -2,6 +2,7 @@ import axios from "axios";
 import _ from "lodash";
 
 export const FETCH_POSTS = "fetch_posts";
+export const FETCH_POST = "fetch_post";
 export const CREATE_POST = "create-post";
 
 const ROOT_URL = "https://blog-server-matthew-ritter.herokuapp.com/api";
