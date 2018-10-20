@@ -26,3 +26,12 @@ export function fetchPosts() {
     payload: request
   };
 }
+
+export function fetchPost(id) {
+  const request = axios.get(`${ROOT_URL}/posts/${id}`);
+
+  return {
+    type: FETCH_POSTS,
+    payload: request
+  };
+}
