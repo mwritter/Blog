@@ -34,7 +34,7 @@ class PostsShow extends Component {
         </Link>
         <button
           className="btn btn-danger float-right"
-          onClinck={this.onDeleteClick.bind(this)}
+          onClick={this.onDeleteClick.bind(this)}
         >
           Delete Post
         </button>
@@ -86,5 +86,5 @@ function mapStateToProps({ posts }, ownProps) {
 
 export default connect(
   mapStateToProps,
-  { fetchPost }
+  { fetchPost, deletePost }
 )(PostsShow);
