@@ -32,7 +32,7 @@ export function fetchPost(id) {
   const request = axios.get(`${ROOT_URL}/posts/${id}`);
 
   return {
-    type: FETCH_POSTS,
+    type: FETCH_POST,
     payload: request
   };
 }
