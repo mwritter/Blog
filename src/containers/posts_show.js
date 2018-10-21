@@ -5,15 +5,12 @@ import { fetchPost } from "../actions";
 
 class PostsShow extends Component {
   componentDidMount() {
-    console.log(this.props);
     const { id } = this.props.match.params;
-
     this.props.fetchPost(id);
   }
 
   render() {
     const { post } = this.props;
-    console.log(post);
 
     if (!post) {
       return (

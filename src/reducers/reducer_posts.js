@@ -10,9 +10,7 @@ export default function(state = {}, action) {
       const post = action.payload.data;
       const newState = { ...state };
       newState[post._id] = post;
-
       return newState;
-
     default:
       return state;
   }
