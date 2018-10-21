@@ -5,12 +5,15 @@ import { fetchPost } from "../actions";
 
 class PostsShow extends Component {
   componentDidMount() {
+    console.log(this.props);
     const { id } = this.props.match.params;
+
     this.props.fetchPost(id);
   }
 
   render() {
     const { post } = this.props;
+    console.log(post);
 
     if (!post) {
       return (
@@ -19,6 +22,7 @@ class PostsShow extends Component {
         </div>
       );
     }
+
     return (
       <div className="container">
         <Link to="/" className="btn btn-primary">
@@ -39,7 +43,7 @@ class PostsShow extends Component {
               <h5>Category</h5>
             </div>
             <div className="col-10">
-              <h4>{post.category}</h4>
+              <h5>{post.category}</h5>
             </div>
           </div>
           <div className="row">
@@ -47,7 +51,7 @@ class PostsShow extends Component {
               <h5>Content</h5>
             </div>
             <div className="col-10">
-              <h4>{post.content}</h4>
+              <p>{post.content}</p>
             </div>
           </div>
           {post.references && (
@@ -56,7 +60,7 @@ class PostsShow extends Component {
                 <h5>References</h5>
               </div>
               <div className="col-10">
-                <h4>{post.references}</h4>
+                <p>{post.references}</p>
               </div>
             </div>
           )}
