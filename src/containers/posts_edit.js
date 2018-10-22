@@ -8,6 +8,7 @@ class PostsEdit extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchPost(id);
+    console.log("this is post", this.post);
   }
 
   renderTitleField(field) {
@@ -82,15 +83,15 @@ class PostsEdit extends Component {
   }
 
   render() {
-    const { post } = this.props;
-    console.log("this is post", post);
-    if (!post) {
-      return (
-        <div className="container">
-          <div>Loading...</div>
-        </div>
-      );
-    }
+    // const { post } = this.props;
+
+    // if (!post) {
+    //   return (
+    //     <div className="container">
+    //       <div>Loading...</div>
+    //     </div>
+    //   );
+    // }
 
     const { handleSubmit } = this.props;
     return (
@@ -115,6 +116,7 @@ class PostsEdit extends Component {
           {this.props.hasRefsValue && (
             <Field name="references" component={this.renderReferencesField} />
           )}
+
           <button type="submit" className="btn btn-primary">
             Update
           </button>
@@ -133,13 +135,14 @@ function validate(values) {
     errors.title = "Enter a title!";
   }
 
+  if (!values.references) {
+    errors.references = "Enter references";
+  }
+
   if (values.hasRefsValue && !values.references) {
     errors.references = "Enter references";
   }
   return errors;
-}
-function mapStateToProps({ posts }, ownProps) {
-  return { post: posts[ownProps.match.params.id] };
 }
 
 PostsEdit = reduxForm({
@@ -147,7 +150,7 @@ PostsEdit = reduxForm({
   form: "PostsEditForm"
 })(PostsEdit);
 
-const selector = formValueSelector("PostsNewForm");
+const selector = formValueSelector("PostsEditForm");
 PostsEdit = connect(
   (state, ownProps) => {
     const title = selector(state, "title");
@@ -166,7 +169,7 @@ PostsEdit = connect(
     };
   },
 
-  { editPost, fetchPost }
+  { fetchPost, editPost }
 )(PostsEdit);
 
-export default connect(mapStateToProps)(PostsEdit);
+export default PostsEdit;
