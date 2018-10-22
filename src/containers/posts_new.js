@@ -69,6 +69,7 @@ class PostsNew extends Component {
   }
 
   onSubmit(values) {
+    console.log(values.references);
     this.props.createPost(values, () => {
       this.props.history.push("/");
     });
@@ -116,6 +117,8 @@ function validate(values) {
   if (!values.title) {
     errors.title = "Enter a title!";
   }
+
+  if (!values.references) errors.references = "Enter references";
 
   if (values.hasRefsValue && !values.references) {
     errors.references = "Enter references";

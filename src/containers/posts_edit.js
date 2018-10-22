@@ -8,7 +8,6 @@ class PostsEdit extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchPost(id);
-    console.log(this.props.post);
   }
 
   renderTitleField(field) {
@@ -76,7 +75,7 @@ class PostsEdit extends Component {
 
   onSubmit(values) {
     const { id } = this.props.match.params;
-    console.log("These values: ", values);
+    console.log(values);
     this.props.editPost(id, values, () => {
       this.props.history.push("/");
     });
@@ -84,7 +83,7 @@ class PostsEdit extends Component {
 
   render() {
     const { post } = this.props;
-
+    console.log("this is post", post);
     if (!post) {
       return (
         <div className="container">
@@ -92,6 +91,7 @@ class PostsEdit extends Component {
         </div>
       );
     }
+
     const { handleSubmit } = this.props;
     return (
       <div className="container">
@@ -99,6 +99,7 @@ class PostsEdit extends Component {
           <Field name="title" component={this.renderTitleField} />
           <Field name="category" component={this.renderCategoryField} />
           <Field name="content" component={this.renderContentField} />
+
           <div>
             <label htmlFor="hasReferences">Has References?</label>
             <div>
@@ -129,7 +130,6 @@ class PostsEdit extends Component {
 
 function validate(values) {
   const errors = {};
-
   if (!values.title) {
     errors.title = "Enter a title!";
   }
