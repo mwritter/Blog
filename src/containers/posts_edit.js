@@ -115,7 +115,6 @@ class PostsEdit extends Component {
           {this.props.hasRefsValue && (
             <Field name="references" component={this.renderReferencesField} />
           )}
-
           <button type="submit" className="btn btn-primary">
             Update
           </button>
