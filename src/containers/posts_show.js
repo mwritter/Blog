@@ -7,6 +7,7 @@ class PostsShow extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchPost(id);
+    console.log(this.props.post);
   }
 
   onDeleteClick() {
@@ -38,6 +39,12 @@ class PostsShow extends Component {
         >
           Delete Post
         </button>
+        <Link
+          className="btn btn-primary float-right"
+          to={`/api/posts/edit/${post._id}`}
+        >
+          Edit Post
+        </Link>
 
         <div className="container">
           <div className="row">
